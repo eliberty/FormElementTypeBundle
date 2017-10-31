@@ -128,22 +128,15 @@
                             autoclose: true,
                             startDate: {% if attr.startDate is defined %}"{{ attr.startDate }}"
                             {% else %}moment().toDate(){% endif %},
-                        weekStart
-                :
-                1,
-                        language
-                :
-                '{{ app.request.locale |lower }}',
-                        onRender
-                :
-                function (date) {
-                    return date.valueOf() < tomorrow.valueOf() ? 'disabled' : '';
-                }
-            }
-                ).
-                on('show', function (e) {
-                    $('.datepicker').css('z-index', 99999999999999);
-                });
+                            weekStart: 1,
+                            language: '{{ app.request.locale |lower }}',
+                            onRender: function (date) {
+                                return date.valueOf() < tomorrow.valueOf() ? 'disabled' : '';
+                            }
+                        }
+                ).on('show', function (e) {
+                            $('.datepicker').css('z-index', 99999999999999);
+                        });
                 $('.glyphicon-calendar').on('click', function (e) {
                     $(this).closest('.input-group').find('input').datepicker('show');
                 });
