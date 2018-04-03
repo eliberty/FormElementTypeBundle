@@ -13,7 +13,6 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "genemu/form-bundle": "3.0.x-dev",
         "symfony/config": ">=2.1.0",
         "symfony/dependency-injection": ">=2.1.0",
         "symfony/http-kernel": ">=2.1.0",
@@ -21,7 +20,7 @@
     },
     "extra": {
         "branch-alias":{
-            "dev-master": "1.0.x-dev"
+            "dev-master": "wip-sf34"
         }
     },
     "autoload": {
