@@ -18,7 +18,7 @@ class DatePickerType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(['widget' => 'datepicker_widget']);
+        $resolver->setDefaults(['widget' => 'single_text']);
     }
 
     /**
