@@ -1,17 +1,17 @@
 {#checkboxswitch#}
 {% block eliberty_checkboxswitch_label %}
-{% spaceless %}
-    {% if label is not same as(false) and label is empty %}
-        {%- if label_format is defined and label_format is not empty -%}
-            {% set label = label_format|replace({
-            '%name%': name,
-            '%id%': id,
-            }) %}
-        {%- else -%}
-            {% set label = name|humanize %}
-        {%- endif -%}
-    {% endif %}
-    <label  class=" control-label col-sm-3">
+    {% spaceless %}
+        {% if label is not same as(false) and label is empty %}
+            {%- if label_format is defined and label_format is not empty -%}
+                {% set label = label_format|replace({
+                    '%name%': name,
+                    '%id%': id,
+                }) %}
+            {%- else -%}
+                {% set label = name|humanize %}
+            {%- endif -%}
+        {% endif %}
+        <label  class=" control-label col-sm-3">
         {% if label_render %}
             {% if widget_checkbox_label in ['both', 'widget'] %}
                 {{ label|trans({}, translation_domain)|raw }}
@@ -20,10 +20,10 @@
             {% endif %}
             </label>
         {% endif %}
-    </label>
-{% endspaceless %}
-
+        </label>
+    {% endspaceless %}
 {% endblock eliberty_checkboxswitch_label %}
+
 {% block eliberty_checkboxswitch_widget %}
     {% spaceless %}
         {% set className = '_' ~ form.vars.name ~ '_' ~ form.vars.id %}
@@ -32,9 +32,9 @@
             {% set className = entityName ~ className  %}
         {% endif %}
         <div class="input-group {%- if not horizontal %} class="checkbox-inline"{% endif %}>">
-            <div class="control {{className}}">
-                <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} class="form-control" data-size="{{ dataSize }}" data-inverse="{{ dataInverse }}" data-switch="switch" data-indeterminate="{{ dataIndeterminate }}" data-animate="{{ dataAnimate }}" data-radio-all-off="{{ dataRadioAllOff }}" data-on-color="{{ dataOnColor }}" data-off-color="{{ dataOffColor }}" data-on-text="{{ dataOnText }}" data-off-text="{{ dataOffText }}" />
-            </div>
+        <div class="control {{className}}">
+            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} class="form-control" data-size="{{ dataSize }}" data-inverse="{{ dataInverse }}" data-switch="switch" data-indeterminate="{{ dataIndeterminate }}" data-animate="{{ dataAnimate }}" data-radio-all-off="{{ dataRadioAllOff }}" data-on-color="{{ dataOnColor }}" data-off-color="{{ dataOffColor }}" data-on-text="{{ dataOnText }}" data-off-text="{{ dataOffText }}" />
+        </div>
         </div>
     {% endspaceless %}
 {% endblock eliberty_checkboxswitch_widget %}
@@ -82,6 +82,7 @@
         </div>
     {% endspaceless %}
 {% endblock eliberty_boolean_widget %}
+
 {#inverse boolean if click true then get false#}
 {% block eliberty_inversed_boolean_widget %}
     {% spaceless %}
@@ -105,19 +106,21 @@
         </div>
     {% endspaceless %}
 {% endblock eliberty_inversed_boolean_widget %}
+
 {#datetime picker#}
 {% block eliberty_datetime_picker_widget %}
     {% spaceless %}
         <div class="">
             <div class="input-group date">
                 <input type="text" {{ block('widget_attributes') }} data-date-format="YYYY-MM-DD HH:mm:ss" {% if value is not empty %}value="{{ value|date('Y-m-d H:i:s') }}" {% endif %} class="form-control">
-                  <span class="input-group-addon add-on">
+                <span class="input-group-addon add-on">
                     <span class="glyphicon-calendar glyphicon"></span>
                   </span>
             </div>
         </div>
     {% endspaceless %}
 {% endblock eliberty_datetime_picker_widget %}
+
 {#label datepicker#}
 {% block eliberty_datepicker_label %}
     {% spaceless %}
@@ -126,74 +129,22 @@
         </label>
     {% endspaceless %}
 {% endblock eliberty_datepicker_label %}
+
 {#date picker#}
 {% block eliberty_datepicker_widget %}
     {% spaceless %}
-    <div class="input-group {% if attr['classSize'] is defined %} {{attr['classSize']}} {% endif %}" >
-        <input type="text"  value="{{ value }}" {{ block('widget_attributes') }} class="form-control eliberty_datepicker" >
-        <span class="input-group-addon calendar"><span class="glyphicon glyphicon-calendar"></span></span>
-    </div>
+        <div class="input-group {% if attr['classSize'] is defined %} {{attr['classSize']}} {% endif %}" >
+            <input type="text"  value="{{ value }}" {{ block('widget_attributes') }} class="form-control eliberty_datepicker" >
+            <span class="input-group-addon calendar"><span class="glyphicon glyphicon-calendar"></span></span>
+        </div>
     {% endspaceless %}
 {% endblock eliberty_datepicker_widget %}
+
 {#choice multiselect#}
 {% block eliberty_multiselect_widget %}
     {% spaceless %}
-    {#<div class=" col-lg-{% if form.vars.attr.position is defined %}12{%else%}9{% endif %}">#}
+        {#<div class=" col-lg-{% if form.vars.attr.position is defined %}12{%else%}9{% endif %}">#}
         <select  {{ block('widget_attributes') }}  class='form-control multiselect_{{ id }}' multiple="multiple" >
-             {% for group_label, choice in choices %}
-                    {% if choice is iterable %}
-                        <optgroup label="{{ group_label|trans({}, translation_domain) }}">
-                            {% set options = choice %}
-                            {{ block('choice_widget_options') }}
-                        </optgroup>
-                    {% else %}
-                        <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>
-                          {{ choice.label|trans({}, translation_domain) }}
-                    </option>
-                {% endif %}
-            {% endfor %}
-        </select>
-    {#</div>#}
-    {% endspaceless %}
-{% endblock eliberty_multiselect_widget %}
-{#choice with all ajax data for populate field#}
-{% block eliberty_rest_choice_widget %}
-    {% spaceless %}
-        <div class="col-lg-9">
-            <select  {{ block('widget_attributes') }} data-placeholder="Please Select..." data-width="col-lg-9" class='chosen-select' data-size="5" data-live-search="true" >
-                 {% for group_label, choice in choices %}
-                    <option   value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>
-                          {{ choice.label|trans({}, translation_domain) }}
-                    </option>
-                {% endfor %}
-            </select>
-        </div>
-    {% endspaceless %}
-{% endblock eliberty_rest_choice_widget %}
-{#Marckdown editor#}
-{% block eliberty_markdown_editor_widget %}
-    {% spaceless %}
-        <textarea {{ block('widget_attributes') }} class="form-control markdown_editor_{{ id }}" style="margin-top:10px;" >{{ value }} </textarea>
-    {% endspaceless %}
-{% endblock eliberty_markdown_editor_widget %}
-{#Checkbox with tow choice#}
-{% block eliberty_expanded_widget %}
-    {% spaceless %}
-        <div {{ block('widget_container_attributes') }} class="btn-group" data-toggle="buttons">
-            {% for child in form %}
-                <input type="radio" {{ block('widget_attributes') }}{% if child.vars.value is defined %} value="{{ child.vars.value }}"{% endif %}{% if child.vars.checked %} checked="checked"{% endif %}>
-                <label class="{% if child.vars.checked == 1 %} active {% endif %}">
-                    {{ child.vars.label | trans }}
-                </label>
-            {% endfor %}
-        </div>
-    {% endspaceless %}
-{% endblock eliberty_expanded_widget %}
-{#Choice with boostrap color (danger, info , warning)#}
-{% block eliberty_bnt_choice_widget %}
-    {% spaceless %}
-        <div class="{% if form.vars.attr.position is defined %}{{ form.vars.attr.position }}{% endif %}">
-        <select  {{ block('widget_attributes') }}   class='selectpicker eliberty_bnt_choice_{{ id }}' data-live-search="true" data-style="btn-info" data-size="10" >
             {% for group_label, choice in choices %}
                 {% if choice is iterable %}
                     <optgroup label="{{ group_label|trans({}, translation_domain) }}">
@@ -207,81 +158,141 @@
                 {% endif %}
             {% endfor %}
         </select>
+        {#</div>#}
+    {% endspaceless %}
+{% endblock eliberty_multiselect_widget %}
+
+{#choice with all ajax data for populate field#}
+{% block eliberty_rest_choice_widget %}
+    {% spaceless %}
+        <div class="col-lg-9">
+            <select  {{ block('widget_attributes') }} data-placeholder="Please Select..." data-width="col-lg-9" class='chosen-select' data-size="5" data-live-search="true" >
+                {% for group_label, choice in choices %}
+                    <option   value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>
+                        {{ choice.label|trans({}, translation_domain) }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    {% endspaceless %}
+{% endblock eliberty_rest_choice_widget %}
+
+{#Marckdown editor#}
+{% block eliberty_markdown_editor_widget %}
+    {% spaceless %}
+        <textarea {{ block('widget_attributes') }} class="form-control markdown_editor_{{ id }}" style="margin-top:10px;" >{{ value }} </textarea>
+    {% endspaceless %}
+{% endblock eliberty_markdown_editor_widget %}
+
+{#Checkbox with tow choice#}
+{% block eliberty_expanded_widget %}
+    {% spaceless %}
+        <div {{ block('widget_container_attributes') }} class="btn-group" data-toggle="buttons">
+            {% for child in form %}
+                <input type="radio" {{ block('widget_attributes') }}{% if child.vars.value is defined %} value="{{ child.vars.value }}"{% endif %}{% if child.vars.checked %} checked="checked"{% endif %}>
+                <label class="{% if child.vars.checked == 1 %} active {% endif %}">
+                    {{ child.vars.label | trans }}
+                </label>
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock eliberty_expanded_widget %}
+
+{#Choice with boostrap color (danger, info , warning)#}
+{% block eliberty_bnt_choice_widget %}
+    {% spaceless %}
+        <div class="{% if form.vars.attr.position is defined %}{{ form.vars.attr.position }}{% endif %}">
+            <select  {{ block('widget_attributes') }}   class='selectpicker eliberty_bnt_choice_{{ id }}' data-live-search="true" data-style="btn-info" data-size="10" >
+                {% for group_label, choice in choices %}
+                    {% if choice is iterable %}
+                        <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+                            {% set options = choice %}
+                            {{ block('choice_widget_options') }}
+                        </optgroup>
+                    {% else %}
+                        <option value="{{ choice.value }}"{% if choice is selectedchoice(value) %} selected="selected"{% endif %}>
+                            {{ choice.label|trans({}, translation_domain) }}
+                        </option>
+                    {% endif %}
+                {% endfor %}
+            </select>
         </div>
     {% endspaceless %}
 {% endblock eliberty_bnt_choice_widget %}
+
 {#Json editor with schema#}
 {% block eliberty_json_widget %}
     {% spaceless %}
         {#{{ block('widget_attributes') }}#}
-       <textarea id="{{id}}" style="display:none;" name="{{full_name}}" class="form-control"  >{{ value | e('html_attr') }}</textarea>
+        <textarea id="{{id}}" style="display:none;" name="{{full_name}}" class="form-control"  >{{ value | e('html_attr') }}</textarea>
         {% if attr.withEditor is defined and attr.withEditor == 'true' and disabled != 'false' %}
-                <div class="row">
-                    <div class="col-lg-12" >
-                        <!-- Button trigger modal -->
-                        <button type="button" id="btnJson{{id}}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModalJson{{id}}">
-                            Edition du Json
-                        </button>
-                        <span id="valid_indicator_{{ id }}" style='margin-left:5px;'class="control-label" ></span>
-                    </div>
+            <div class="row">
+                <div class="col-lg-12" >
+                    <!-- Button trigger modal -->
+                    <button type="button" id="btnJson{{id}}" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModalJson{{id}}">
+                        Edition du Json
+                    </button>
+                    <span id="valid_indicator_{{ id }}" style='margin-left:5px;'class="control-label" ></span>
                 </div>
-                <div class="modal fade" id="myModalJson{{id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabelJson{{id}}" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel{{id}}">Edition du json</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div role="tabpanel">
-                                    <!-- Nav tabs -->
-                                    <ul class="nav nav-tabs" role="tablist" id="tab_{{ id }}">
-                                        <li role="presentation" class="active"><a href="#editor_holder_{{id}}" aria-controls="editor_holder_{{id}}" role="tab" data-toggle="tab">Json Editor</a></li>
-                                        {% if attr.withSchema is defined %}<li role="presentation"><a href="#editor_schema_{{id}}_tab" aria-controls="editor_schema_{{id}}_tab" role="tab" data-toggle="tab">Schema Editor</a></li>{% endif %}
-                                    </ul>
+            </div>
+            <div class="modal fade" id="myModalJson{{id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabelJson{{id}}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel{{id}}">Edition du json</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div role="tabpanel">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist" id="tab_{{ id }}">
+                                    <li role="presentation" class="active"><a href="#editor_holder_{{id}}" aria-controls="editor_holder_{{id}}" role="tab" data-toggle="tab">Json Editor</a></li>
+                                    {% if attr.withSchema is defined %}<li role="presentation"><a href="#editor_schema_{{id}}_tab" aria-controls="editor_schema_{{id}}_tab" role="tab" data-toggle="tab">Schema Editor</a></li>{% endif %}
+                                </ul>
 
-                                    <!-- Tab panes -->
-                                    <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane active" id="editor_holder_{{id}}"></div>
-                                        {% if attr.withSchema is defined %}
-                                            <div role="tabpanel" class="tab-pane" id="editor_schema_{{id}}_tab">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <h2>Schema</h2>
-                                                        <p>Vous pouvez modifier le <a href="http://jeremydorn.com/json-editor/">schéma</a> et voir comment la forme générée ressemble . Après vous apportez des modifications , cliquez sur
-                                                            <button class="btn btn-primary"  id="btnJsonSchemaUpdate{{id}}" >Mise à jour du schéma</button>
-                                                        </p>
-                                                        <textarea id="schema_editor_{{id}}" name="schema_editor_{{full_name}}" class="form-control" style="height: 466px; margin: 0px -1px 0px 0px;" ></textarea>
-                                                    </div>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="editor_holder_{{id}}"></div>
+                                    {% if attr.withSchema is defined %}
+                                        <div role="tabpanel" class="tab-pane" id="editor_schema_{{id}}_tab">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <h2>Schema</h2>
+                                                    <p>Vous pouvez modifier le <a href="http://jeremydorn.com/json-editor/">schéma</a> et voir comment la forme générée ressemble . Après vous apportez des modifications , cliquez sur
+                                                        <button class="btn btn-primary"  id="btnJsonSchemaUpdate{{id}}" >Mise à jour du schéma</button>
+                                                    </p>
+                                                    <textarea id="schema_editor_{{id}}" name="schema_editor_{{full_name}}" class="form-control" style="height: 466px; margin: 0px -1px 0px 0px;" ></textarea>
                                                 </div>
                                             </div>
-                                        {% endif %}
-                                    </div>
-
+                                        </div>
+                                    {% endif %}
                                 </div>
+
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="btnJsonModalSave{{ id }}" >Save changes</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="btnJsonModalSave{{ id }}" >Save changes</button>
                         </div>
                     </div>
                 </div>
+            </div>
         {% endif %}
     {% endspaceless %}
 {% endblock eliberty_json_widget %}
+
 {#colorpicker#}
 {% block eliberty_colorpicker_widget %}
     {% spaceless %}
         <input type="text" value="{{ value }}" {{ block('widget_attributes') }} class="pick-a-color form-control" >
     {% endspaceless %}
 {% endblock eliberty_colorpicker_widget %}
+
 {#Upload document#}
 {% block eliberty_file_upload_widget %}
     {% spaceless %}
-
         {% image '@RedpillBundle/Resources/public/images/empty.png' %}
-        {% set noImg = asset_url %}
+            {% set noImg = asset_url %}
         {% endimage %}
         <input type="hidden" {{ block('widget_attributes') }}
                 {% if form.vars.value is defined and form.vars.value is not null and getUploadedImagePath(form.vars.value, getEntityName(form.parent.vars.data)) != '' %}
@@ -361,17 +372,20 @@
         </div>
     {% endspaceless %}
 {% endblock eliberty_file_upload_widget %}
+
 {#tags#}
 {% block eliberty_tags_label %}
     {% spaceless %}
         {{ label }}
     {% endspaceless %}
 {% endblock eliberty_tags_label %}
+
 {% block eliberty_tags_widget %}
     {% spaceless %}
         <input type="text" {{ block('widget_attributes') }}   class="demo-default input-tags" value="{% for key,choice in choices %}{{choice.label}}{% if (choices | last)  != choice %},{% endif %}{% endfor %}" />
     {% endspaceless %}
 {% endblock eliberty_tags_widget %}
+
 {#Keycard#}
 {% block eliberty_keycard_skidata_widget %}
     {% spaceless %}
@@ -422,6 +436,7 @@
 
     {% endspaceless %}
 {% endblock eliberty_keycard_teamaxess_widget %}
+
 {% block eliberty_keycard_open_widget %}
     {% spaceless %}
         <div class="open_keycard">
@@ -436,7 +451,6 @@
     {% endspaceless %}
 {% endblock eliberty_keycard_open_widget %}
 
-
 {# fieldset#}
 {% block eliberty_fieldset_widget %}
     {% spaceless %}
@@ -447,35 +461,36 @@
     {% endspaceless %}
 {% endblock eliberty_fieldset_widget %}
 
+{#Phonenumber#}
 {% block eliberty_phonenumber_widget %}
     {% spaceless %}
+        {% set type = type|default('hidden') %}
+        {% set isPhoneInput = "phone" %}
+        {% set initialcountry = form.vars.attr.initialCountry|default('FR') %}
+        {% set idForHidden = isPhoneInput in id ? 'contact_phone_hidden' : 'contact_mobile_hidden' %}
+        {% set nameForHidden = isPhoneInput in id ? 'customer_checkout[contact][phone]' : 'customer_checkout[contact][mobile]' %}
         {% if form.vars.attr.icon is defined %}
             <div class="input-group">
-                <span class="input-group-addon" style="display: none;"><span class="glyphicon"></span></span>
+            <span class="input-group-addon" style="display: none;"><span class="glyphicon"></span></span>
         {% endif %}
         <input type="text" value="{{ value }}" {{ block('widget_attributes') }} class="form-control">
+        {% dump( value ) %}
         <div class="phone-icon-elements">
             <span class="phone-checker phone-icon fa fa-2x form-control-feedback withoutprepend"></span>
             <span class="phone-asterisk phone-icon fa fa-asterisk form-control-feedback withoutprepend" style="display: none;"></span>
         </div>
-
-        <input type="hidden" value="{{ value }}" {{ block('widget_attributes') }}>
-
+        <input type="{{ type }}" value="{{ value }}" id={{ idForHidden }} initialcountry={{ initialcountry }} name={{ nameForHidden }} />
         {% if form.vars.attr.icon is defined %}
             </div>
         {% endif %}
     {% endspaceless %}
 {% endblock eliberty_phonenumber_widget %}
 
-
-
 {% block eliberty_textmask_widget %}
     {% spaceless %}
         <input type="text" value="{{ value }}" {{ block('widget_attributes') }} class="form-control">
     {% endspaceless %}
 {% endblock eliberty_textmask_widget %}
-
-
 
 {% block eliberty_translatetext_widget %}
     {% spaceless %}
