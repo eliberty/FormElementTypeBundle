@@ -496,9 +496,6 @@
         {% include 'ElibertyFormElementTypeBundle:Form/Js/' ~ formelementtypemode ~':selectize.html.twig' %}
         <script type="text/javascript">
             $(function () {
-                if (redpillToken == null) {
-                    getToken('redpill');
-                }
                 $('.input-tags').selectize({
                     plugins: ['remove_button'],
                     //maxItems: null,
@@ -515,12 +512,11 @@
                     },
                     create: true,
                     load: function (query, callback) {
-                        {% set url = path('api_v1_get_tags' , {'_format' : 'json'}) | raw %};
+                        {% set url = path('rp_console_json_get_tags') | raw %};
                         $.ajax({
                             url: '{{ url }}',
                             dataType: 'json',
                             data: {'search': query},
-                            headers: {"Authorization": "Bearer " + redpillToken},
                             success: function (data) {
                                 callback(data.data);
                             }
