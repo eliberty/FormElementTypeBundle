@@ -45,7 +45,7 @@ class FormExtension extends AbstractExtension
     /**
      * {@inheritdoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new TwigFunction('form_javascript', [$this, 'renderJavascript'], ['is_safe' => ['html']]),
@@ -69,13 +69,5 @@ class FormExtension extends AbstractExtension
         $block = $prototype ? 'javascript_prototype' : 'javascript';
 
         return $this->renderer->searchAndRenderBlock($view, $block);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return 'eliberty.twig.extension.form';
     }
 }

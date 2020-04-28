@@ -34,7 +34,7 @@ class CheckboxSwitchType extends AbstractType
         $offColor = \array_key_exists('offcolor', $options) && \in_array(strtolower($options['offcolor']), ['primary', 'info', 'success', 'warning', 'danger', 'default'])
             ? strtolower($options['offcolor'])
             : 'default';
-        $onText  = \array_key_exists('ontext', $options)  && \strlen($options['ontext'])   > 0 ? $options['ontext'] : 'ON';
+        $onText  = \array_key_exists('ontext', $options)  && \strlen($options['ontext'])  > 0 ? $options['ontext'] : 'ON';
         $offText = \array_key_exists('offtext', $options) && \strlen($options['offtext']) > 0 ? $options['offtext'] : 'OFF';
 
         $builder->setAttribute('dataIndeterminate', $isIndeterminate);
