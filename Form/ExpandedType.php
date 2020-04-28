@@ -7,8 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ExpandedType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class ExpandedType.
  */
 class ExpandedType extends AbstractType
 {
@@ -17,13 +16,13 @@ class ExpandedType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'widget' => 'expanded_widget'
-        ));
+        $resolver->setDefaults([
+            'widget' => 'expanded_widget',
+        ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

@@ -4,20 +4,18 @@ namespace Eliberty\Bundle\FormElementTypeBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class CheckboxToggleType
- * responsability: overload the checkbox fields turning it into on-off button style
- * @package Eliberty\RedpillBundle\Form\FormElementType
+ * responsability: overload the checkbox fields turning it into on-off button style.
  */
 class CheckboxToggleType extends AbstractType
 {
-
     /**
      * {@inheritdoc}
      */
@@ -40,17 +38,18 @@ class CheckboxToggleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'widget' => 'checkboxtoggle_widget'
+            'widget' => 'checkboxtoggle_widget',
         ]);
     }
 
     /**
-     * @return null|string|FormTypeInterface
+     * @return string|FormTypeInterface|null
      */
     public function getParent()
     {
         return CheckboxType::class;
     }
+
     /**
      * @return string
      */

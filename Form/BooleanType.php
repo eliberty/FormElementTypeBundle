@@ -8,8 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class BooleanType
- * responsability: overload the text fields turning it into boolean style
- * @package Eliberty\RedpillBundle\Form\FormElementType
+ * responsability: overload the text fields turning it into boolean style.
  */
 class BooleanType extends AbstractType
 {
@@ -19,12 +18,12 @@ class BooleanType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'widget' => 'boolean_widget'
+            'widget' => 'boolean_widget',
         ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

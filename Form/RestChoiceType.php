@@ -7,8 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class RestChoiceType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class RestChoiceType.
  */
 class RestChoiceType extends AbstractType
 {
@@ -17,13 +16,13 @@ class RestChoiceType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'widget' => 'rest_choice_widget'
-        ));
+        $resolver->setDefaults([
+            'widget' => 'rest_choice_widget',
+        ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

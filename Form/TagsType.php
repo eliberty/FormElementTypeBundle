@@ -8,8 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class TagsType
- * Responsability: overload the entity fields and turning it into tags field
- * @package Eliberty\RedpillBundle\Form\FormElementType
+ * Responsability: overload the entity fields and turning it into tags field.
  */
 class TagsType extends AbstractType
 {
@@ -19,12 +18,12 @@ class TagsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'widget' => 'tags_widget'
+            'widget' => 'tags_widget',
         ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {
@@ -46,5 +45,4 @@ class TagsType extends AbstractType
     {
         return $this->getBlockPrefix();
     }
-
 }

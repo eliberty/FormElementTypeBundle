@@ -2,7 +2,7 @@
 /**
  * Eliberty Source File
  * Creator: xav
- * Created At: 14/06/2014 - 08:01
+ * Created At: 14/06/2014 - 08:01.
  */
 
 namespace Eliberty\Bundle\FormElementTypeBundle\Form;
@@ -29,7 +29,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PolyCollectionType extends AbstractType
 {
-
     /**
      * {@inheritdoc}
      */
@@ -65,7 +64,7 @@ class PolyCollectionType extends AbstractType
         foreach ($options['types'] as $type) {
             $key = $type instanceof FormTypeInterface ? $type->getName() : $type;
 
-            $prototype        = $this->buildPrototype(
+            $prototype = $this->buildPrototype(
                 $builder,
                 $options['prototype_name'],
                 $type,
@@ -90,7 +89,7 @@ class PolyCollectionType extends AbstractType
     protected function buildPrototype(FormBuilderInterface $builder, $name, $type, array $options)
     {
         $prototype = $builder->create($name, $type, array_replace([
-            'label' => $name . 'label__',
+            'label' => $name.'label__',
         ], $options));
 
         return $prototype;
@@ -151,11 +150,11 @@ class PolyCollectionType extends AbstractType
         ]);
 
         $resolver->setRequired([
-            'types'
+            'types',
         ]);
 
         $resolver->setAllowedTypes([
-            'types' => 'array'
+            'types' => 'array',
         ]);
 
         $resolver->setNormalizer('empty_value', $emptyValueNormalizer);
@@ -176,4 +175,4 @@ class PolyCollectionType extends AbstractType
     {
         return $this->getBlockPrefix();
     }
-} 
+}

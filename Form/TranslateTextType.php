@@ -6,14 +6,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
- * Class TranslateTextType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class TranslateTextType.
  */
 class TranslateTextType extends AbstractType
 {
-
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

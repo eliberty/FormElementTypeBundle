@@ -6,14 +6,12 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 /**
- * Class TranslateTextAreaType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class TranslateTextAreaType.
  */
 class TranslateTextAreaType extends AbstractType
 {
-
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {
@@ -35,5 +33,4 @@ class TranslateTextAreaType extends AbstractType
     {
         return $this->getBlockPrefix();
     }
-
 }

@@ -11,3 +11,5 @@ cache.properties
 /.rsync_cache/
 behat.phar
 behat.yml
+.php_cs.cache
+

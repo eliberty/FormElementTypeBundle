@@ -7,8 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class FileUploadType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class FileUploadType.
  */
 class FileUploadType extends AbstractType
 {
@@ -17,13 +16,13 @@ class FileUploadType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'widget' => 'file_upload_widget'
-        ));
+        $resolver->setDefaults([
+            'widget' => 'file_upload_widget',
+        ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

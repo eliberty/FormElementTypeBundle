@@ -8,8 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class DatePickerType
- * responsability: overload the datetime fields and turning it into the custom datetime field
- * @package Eliberty\RedpillBundle\Form\FormElementType
+ * responsability: overload the datetime fields and turning it into the custom datetime field.
  */
 class DatePickerType extends AbstractType
 {
@@ -22,7 +21,7 @@ class DatePickerType extends AbstractType
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {
@@ -36,6 +35,7 @@ class DatePickerType extends AbstractType
     {
         return 'eliberty_datepicker';
     }
+
     /**
      * @return string
      */

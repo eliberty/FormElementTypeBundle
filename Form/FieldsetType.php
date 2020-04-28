@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: tmolin
  * Date: 03/09/15
- * Time: 16:56
+ * Time: 16:56.
  */
 
 namespace Eliberty\Bundle\FormElementTypeBundle\Form;
@@ -15,8 +15,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class FieldsetType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class FieldsetType.
  */
 class FieldsetType extends AbstractType
 {
@@ -26,9 +25,9 @@ class FieldsetType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'title'      => false,
-            'subforms'   => [],
-            'options'    => []
+            'title'    => false,
+            'subforms' => [],
+            'options'  => [],
         ]);
     }
 
@@ -49,7 +48,7 @@ class FieldsetType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        if ($options['title'] !== false) {
+        if (false !== $options['title']) {
             $view->vars['title'] = $options['title'];
         }
     }
@@ -61,6 +60,7 @@ class FieldsetType extends AbstractType
     {
         return $this->getBlockPrefix();
     }
+
     /**
      * {@inheritdoc}
      */

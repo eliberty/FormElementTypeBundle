@@ -7,8 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class DateTimePickerType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class DateTimePickerType.
  */
 class DateTimePickerType extends AbstractType
 {
@@ -17,13 +16,13 @@ class DateTimePickerType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'widget' => 'single_text'
-        ));
+        $resolver->setDefaults([
+            'widget' => 'single_text',
+        ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

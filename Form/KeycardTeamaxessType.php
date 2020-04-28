@@ -2,16 +2,15 @@
 
 namespace Eliberty\Bundle\FormElementTypeBundle\Form;
 
+use Eliberty\Bundle\FormElementTypeBundle\Form\DataTransformer\SkiCardTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Eliberty\Bundle\FormElementTypeBundle\Form\DataTransformer\SkiCardTransformer;
 
 /**
- * Class KeycardTeamaxessType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class KeycardTeamaxessType.
  */
 class KeycardTeamaxessType extends AbstractType
 {
@@ -22,20 +21,19 @@ class KeycardTeamaxessType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $wtpOptions = $crcOptions = $acceptOptions = [
-            'required'             => $options['required'],
-            'label_render'         => false];
+            'required'     => $options['required'],
+            'label_render' => false, ];
 
         $wtpOptions['label_render'] = false;
-        $wtpOptions['attr'] = ['maxlength' => 8];
-        $crcOptions['attr'] = ['maxlength' => 3];
-        $acceptOptions['attr'] = ['maxlength' => 3];
+        $wtpOptions['attr']         = ['maxlength' => 8];
+        $crcOptions['attr']         = ['maxlength' => 3];
+        $acceptOptions['attr']      = ['maxlength' => 3];
 
         $builder
             ->add('wtp', TextType::class, $wtpOptions)
             ->add('crc', TextType::class, $crcOptions)
             ->add('acceptance', TextType::class, $acceptOptions)
             ->addViewTransformer($this->getTransformer());
-
     }
 
     /**
@@ -45,12 +43,12 @@ class KeycardTeamaxessType extends AbstractType
     {
         return new SkiCardTransformer(['wtp', 'crc', 'acceptance']);
     }
+
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-
         $compound = function (Options $options) {
             return true;
         };
@@ -60,7 +58,7 @@ class KeycardTeamaxessType extends AbstractType
         };
 
         $emptyValueNormalizer = function (Options $options, $emptyValue) use ($emptyValueDefault) {
-            if (is_array($emptyValue)) {
+            if (\is_array($emptyValue)) {
                 $default = $emptyValueDefault($options);
 
                 return array_merge(
@@ -72,17 +70,17 @@ class KeycardTeamaxessType extends AbstractType
             return [
                 'wtp'        => $emptyValue,
                 'crc'        => $emptyValue,
-                'acceptance' => $emptyValue
+                'acceptance' => $emptyValue,
             ];
         };
 
         $resolver->setDefaults(
             [
-                'compound'          => $compound,
-                'required'          => false,
-                'empty_value'       => $emptyValue,
-                'error_bubbling'    => true,
-                'data_class'        => null
+                'compound'       => $compound,
+                'required'       => false,
+                'empty_value'    => $emptyValue,
+                'error_bubbling' => true,
+                'data_class'     => null,
             ]
         );
 

@@ -8,8 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class MarkdownEditorType
- * responsability: overload the textarea fields and turning it into markdown editor
- * @package Eliberty\RedpillBundle\Form\FormElementType
+ * responsability: overload the textarea fields and turning it into markdown editor.
  */
 class MarkdownEditorType extends AbstractType
 {
@@ -18,13 +17,13 @@ class MarkdownEditorType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'widget' => 'markdown_editor_widget'
-        ));
+        $resolver->setDefaults([
+            'widget' => 'markdown_editor_widget',
+        ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

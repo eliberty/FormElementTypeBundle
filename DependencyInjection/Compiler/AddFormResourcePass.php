@@ -15,9 +15,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
- * Add a new twig.form.resources
- * 
- * @author Philippe vesin 
+ * Add a new twig.form.resources.
  */
 class AddFormResourcePass implements CompilerPassInterface
 {
@@ -28,15 +26,9 @@ class AddFormResourcePass implements CompilerPassInterface
     {
         $resources = $container->getParameter('twig.form.resources');
 
-        foreach (array('div', 'jquery', 'stylesheet') as $template) {
-            $resources[] = 'ElibertyFormElementTypeBundle:Form:' . $template . '_layout.html.twig';
+        foreach (['div', 'jquery', 'stylesheet'] as $template) {
+            $resources[] = 'ElibertyFormElementTypeBundle:Form:'.$template.'_layout.html.twig';
         }
-
-//        if(array_key_exists('RedpillBundle',$container->getParameter('kernel.bundles'))){
-//            $twig = new \Twig_Environment();
-//            $twig->setLoader(new \Twig_Loader_Filesystem([__DIR__.'/../../Resources/views/Form']));
-//            $twig->addGlobal('formelementtypemode', 'redpill');
-//        }
 
         $container->setParameter('twig.form.resources', $resources);
     }

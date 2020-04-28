@@ -4,40 +4,38 @@ namespace Eliberty\Bundle\FormElementTypeBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class CheckboxToggleType
- * responsability: overload the checkbox fields turning it into on-off button style
- * @package Eliberty\RedpillBundle\Form\FormElementType
+ * responsability: overload the checkbox fields turning it into on-off button style.
  */
 class CheckboxSwitchType extends AbstractType
 {
-
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $isInverse = array_key_exists('inverse', $options) && $options['inverse'] ? true :false;
-        $isIndeterminate = array_key_exists('indeterminate', $options) && $options['indeterminate'] ? true :false;
-        $isAnimate = array_key_exists('animate', $options) && $options['animate'] ? true : false;
-        $isRadioAllOff = array_key_exists('radioalloff', $options) && $options['radioalloff'] ? true : false;
-        $size      = array_key_exists('size', $options) && in_array(strtolower($options['size']), ['mini', 'small', 'normal', 'large'])
+        $isInverse       = \array_key_exists('inverse', $options)       && $options['inverse'] ? true : false;
+        $isIndeterminate = \array_key_exists('indeterminate', $options) && $options['indeterminate'] ? true : false;
+        $isAnimate       = \array_key_exists('animate', $options)       && $options['animate'] ? true : false;
+        $isRadioAllOff   = \array_key_exists('radioalloff', $options)   && $options['radioalloff'] ? true : false;
+        $size            = \array_key_exists('size', $options)          && \in_array(strtolower($options['size']), ['mini', 'small', 'normal', 'large'])
             ? strtolower($options['size'])
             : 'mini';
-        $onColor   = array_key_exists('oncolor', $options) && in_array(strtolower($options['oncolor']), ['primary', 'info', 'success', 'warning', 'danger', 'default'])
+        $onColor = \array_key_exists('oncolor', $options) && \in_array(strtolower($options['oncolor']), ['primary', 'info', 'success', 'warning', 'danger', 'default'])
             ? strtolower($options['oncolor'])
             : 'primary';
-        $offColor  = array_key_exists('offcolor', $options) && in_array(strtolower($options['offcolor']), ['primary', 'info', 'success', 'warning', 'danger', 'default'])
+        $offColor = \array_key_exists('offcolor', $options) && \in_array(strtolower($options['offcolor']), ['primary', 'info', 'success', 'warning', 'danger', 'default'])
             ? strtolower($options['offcolor'])
             : 'default';
-        $onText    = array_key_exists('ontext', $options) && strlen($options['ontext']) > 0 ? $options['ontext'] : 'ON';
-        $offText   = array_key_exists('offtext', $options) && strlen($options['offtext']) > 0 ? $options['offtext'] : 'OFF';
+        $onText  = \array_key_exists('ontext', $options)  && \strlen($options['ontext'])   > 0 ? $options['ontext'] : 'ON';
+        $offText = \array_key_exists('offtext', $options) && \strlen($options['offtext']) > 0 ? $options['offtext'] : 'OFF';
 
         $builder->setAttribute('dataIndeterminate', $isIndeterminate);
         $builder->setAttribute('dataRadioAllOff', $isRadioAllOff);
@@ -86,7 +84,7 @@ class CheckboxSwitchType extends AbstractType
     }
 
     /**
-     * @return null|string|FormTypeInterface
+     * @return string|FormTypeInterface|null
      */
     public function getParent()
     {
@@ -100,6 +98,7 @@ class CheckboxSwitchType extends AbstractType
     {
         return 'eliberty_checkboxswitch';
     }
+
     /**
      * @return string
      */

@@ -9,8 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * Class InversedBooleanType
  * responsability: overload the text fields turning it into an "inversed" boolean style
- * ===> false is display as On and true is display as Off
- * @package Eliberty\RedpillBundle\Form\FormElementType
+ * ===> false is display as On and true is display as Off.
  */
 class InversedBooleanType extends AbstractType
 {
@@ -19,13 +18,13 @@ class InversedBooleanType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'widget' => 'inversed_boolean_widget'
-        ));
+        $resolver->setDefaults([
+            'widget' => 'inversed_boolean_widget',
+        ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

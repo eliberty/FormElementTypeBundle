@@ -6,8 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class IntegerType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class IntegerType.
  */
 class IntegerType extends AbstractType
 {
@@ -16,13 +15,13 @@ class IntegerType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'widget' => 'single_text'
-        ));
+        $resolver->setDefaults([
+            'widget' => 'single_text',
+        ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

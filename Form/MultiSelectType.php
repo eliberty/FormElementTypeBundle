@@ -8,8 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class MultiSelectType
- * responsability: overload the entity fields and turning it into multi select
- * @package Eliberty\RedpillBundle\Form\FormElementType
+ * responsability: overload the entity fields and turning it into multi select.
  */
 class MultiSelectType extends AbstractType
 {
@@ -19,12 +18,12 @@ class MultiSelectType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'widget' => 'multiselect_widget'
+            'widget' => 'multiselect_widget',
         ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

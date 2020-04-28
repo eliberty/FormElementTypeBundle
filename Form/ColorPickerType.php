@@ -8,8 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class ColorPickerType
- * responsability: overload the text fields turning it into color style
- * @package Eliberty\RedpillBundle\Form\FormElementType
+ * responsability: overload the text fields turning it into color style.
  */
 class ColorPickerType extends AbstractType
 {
@@ -19,12 +18,12 @@ class ColorPickerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'widget' => 'colorpicker_widget'
+            'widget' => 'colorpicker_widget',
         ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

@@ -8,8 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Class ChosenEntityType
- * responsability: overload the entity fields turning it into chosen style
- * @package Eliberty\RedpillBundle\Form\FormElementType
+ * responsability: overload the entity fields turning it into chosen style.
  */
 class ChosenEntityType extends AbstractType
 {
@@ -19,12 +18,12 @@ class ChosenEntityType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'widget' => 'chosen_entity_widget'
+            'widget' => 'chosen_entity_widget',
         ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {
@@ -38,6 +37,7 @@ class ChosenEntityType extends AbstractType
     {
         return 'eliberty_chosen_entity';
     }
+
     /**
      * @return string
      */

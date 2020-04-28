@@ -1,99 +1,63 @@
-parameters:
-#    eliberty_form.example.class: Eliberty\FormBundle\Example
-
 services:
-
-    eliberty.form.type.checkboxtoggle:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\CheckboxToggleType
+    Eliberty\Bundle\FormElementTypeBundle\Twig\Extension\FormExtension:
+        arguments: ["@twig.form.renderer"] 
+        tags: [{ name: twig.extension }]
+    Eliberty\Bundle\FormElementTypeBundle\Form\CheckboxToggleType:
         tags: [{ name: form.type, alias: eliberty_checkboxtoggle }]
-    eliberty.form.type.fieldset:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\FieldsetType
+    Eliberty\Bundle\FormElementTypeBundle\Form\FieldsetType:
         tags: [{ name: form.type, alias: eliberty_fieldset }]
-    eliberty.form.type.checkboxswitch:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\CheckboxSwitchType
+    Eliberty\Bundle\FormElementTypeBundle\Form\CheckboxSwitchType:
         tags: [{ name: form.type, alias: eliberty_checkboxswitch }]
-    eliberty.form.type.boolean:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\BooleanType
+    Eliberty\Bundle\FormElementTypeBundle\Form\BooleanType:
         tags: [{ name: form.type, alias: eliberty_boolean }]
-    eliberty.form.type.inversed_boolean:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\InversedBooleanType
+    Eliberty\Bundle\FormElementTypeBundle\Form\InversedBooleanType:
         tags: [{ name: form.type, alias: eliberty_inversed_boolean }]
-    eliberty.form.type.markdown.editor:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\MarkdownEditorType
+    Eliberty\Bundle\FormElementTypeBundle\Form\MarkdownEditorType:
         tags: [{ name: form.type, alias: eliberty_markdown_editor }]
-    eliberty.form.type.multiselect:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\MultiSelectType
+    Eliberty\Bundle\FormElementTypeBundle\Form\MultiSelectType:
         tags: [{ name: form.type, alias: eliberty_multiselect }]
-    eliberty.form.type.datepicker:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\DatePickerType
+    Eliberty\Bundle\FormElementTypeBundle\Form\DatePickerType:
         tags: [{ name: form.type, alias: eliberty_datepicker }]
-    eliberty.form.type.tags:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\TagsType
+    Eliberty\Bundle\FormElementTypeBundle\Form\TagsType:
         tags: [{ name: form.type, alias: eliberty_tags }]
-    eliberty.form.type.file.upload:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\FileUploadType
+    Eliberty\Bundle\FormElementTypeBundle\Form\FileUploadType:
         tags: [{ name: form.type, alias: eliberty_file_upload }]
-    eliberty.form.type.choice_rest:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\RestChoiceType
+    Eliberty\Bundle\FormElementTypeBundle\Form\RestChoiceType:
         tags: [{ name: form.type, alias: eliberty_rest_choice }]
-    eliberty.form.type.choice_bnt:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\BntChoiceType
+    Eliberty\Bundle\FormElementTypeBundle\Form\BntChoiceType:
         tags: [{ name: form.type, alias: eliberty_bnt_choice }]
-    eliberty.form.type.expanded:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\ExpandedType
+    Eliberty\Bundle\FormElementTypeBundle\Form\ExpandedType:
         tags: [{ name: form.type, alias: eliberty_expanded }]
-    eliberty.form.type.chosen:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\ChosenType
+    Eliberty\Bundle\FormElementTypeBundle\Form\ChosenType:
         tags: [{ name: form.type, alias: eliberty_chosen }]
-    eliberty.form.type.chosen.entity:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\ChosenEntityType
+    Eliberty\Bundle\FormElementTypeBundle\Form\ChosenEntityType:
         tags: [{ name: form.type, alias: eliberty_chosen_entity }]
-    eliberty.form.type.keycard.skidata:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\KeycardSkidataType
+    Eliberty\Bundle\FormElementTypeBundle\Form\KeycardSkidataType:
         tags: [{ name: form.type, alias: eliberty_keycard_skidata }]
-    eliberty.form.type.keycard.teamaxess:
-            class: Eliberty\Bundle\FormElementTypeBundle\Form\KeycardTeamaxessType
-            tags: [{ name: form.type, alias: eliberty_keycard_teamaxess }]
-    eliberty.form.type.keycard.alfi:
-            class: Eliberty\Bundle\FormElementTypeBundle\Form\KeycardAlfiType
-            tags: [{ name: form.type, alias: eliberty_keycard_alfi }]
-    eliberty.form.type.keycard.open:
-            class: Eliberty\Bundle\FormElementTypeBundle\Form\KeycardOpenType
-            tags: [{ name: form.type, alias: eliberty_keycard_open }]
-    eliberty.form.type.datetime.picker:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\DateTimePickerType
+    Eliberty\Bundle\FormElementTypeBundle\Form\KeycardTeamaxessType:
+        tags: [{ name: form.type, alias: eliberty_keycard_teamaxess }]
+    Eliberty\Bundle\FormElementTypeBundle\Form\KeycardAlfiType:
+        tags: [{ name: form.type, alias: eliberty_keycard_alfi }]
+    Eliberty\Bundle\FormElementTypeBundle\Form\KeycardOpenType:
+        tags: [{ name: form.type, alias: eliberty_keycard_open }]
+    Eliberty\Bundle\FormElementTypeBundle\Form\DateTimePickerType:
         tags: [{ name: form.type, alias: eliberty_datetime_picker }]
-    eliberty.form.type.integer:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\IntegerType
+    Eliberty\Bundle\FormElementTypeBundle\Form\IntegerType:
         tags: [{ name: form.type, alias: eliberty_integer }]
-    eliberty.form.type.textmask:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\TextMaskType
+    Eliberty\Bundle\FormElementTypeBundle\Form\TextMaskType:
         tags: [{ name: form.type, alias: eliberty_textmask }]
-    eliberty.form.type.decimal:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\DecimalType
+    Eliberty\Bundle\FormElementTypeBundle\Form\DecimalType:
         tags: [{ name: form.type, alias: eliberty_decimal }]
-    eliberty.form.type.json:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\JsonType
+    Eliberty\Bundle\FormElementTypeBundle\Form\JsonType:
         tags: [{ name: form.type, alias: eliberty_json }]
-    ##Defined form polymorphe collections
-    eliberty.form.polycollection_type:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\PolyCollectionType
+    Eliberty\Bundle\FormElementTypeBundle\Form\PolyCollectionType:
         tags:
             - { name: form.type, alias: eliberty_polycollection}
-
-    eliberty.form.type.entity_hidden:
-         class: Eliberty\Bundle\FormElementTypeBundle\Form\EntityHiddenType
+    Eliberty\Bundle\FormElementTypeBundle\Form\EntityHiddenType:
          arguments: ["@doctrine.orm.entity_manager"]
          tags:
-         - { name: form.type, alias: eliberty_entity_hidden }
-
-    eliberty.form.type.colorpicker:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\ColorPickerType
+            - { name: form.type, alias: eliberty_entity_hidden }
+    Eliberty\Bundle\FormElementTypeBundle\Form\ColorPickerType:
         tags: [{ name: form.type, alias: eliberty_colorpicker }]
-
-    eliberty.form.type.phonenumber:
-        class: Eliberty\Bundle\FormElementTypeBundle\Form\PhoneNumberType
+    Eliberty\Bundle\FormElementTypeBundle\Form\PhoneNumberType:
         tags: [{ name: form.type, alias: eliberty_phonenumber }]
-
-
-

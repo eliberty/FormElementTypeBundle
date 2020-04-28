@@ -2,16 +2,15 @@
 
 namespace Eliberty\Bundle\FormElementTypeBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
+use Doctrine\Common\Persistence\ObjectManager;
 use Eliberty\Bundle\FormElementTypeBundle\Form\DataTransformer\EntityToIdTransformer;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Class EntityHiddenType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class EntityHiddenType.
  */
 class EntityHiddenType extends AbstractType
 {
@@ -30,7 +29,7 @@ class EntityHiddenType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -44,15 +43,15 @@ class EntityHiddenType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
-            ->setRequired(array('class'))
-            ->setDefaults(array(
+            ->setRequired(['class'])
+            ->setDefaults([
                 'invalid_message' => 'The entity does not exist.',
-            ))
+            ])
         ;
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

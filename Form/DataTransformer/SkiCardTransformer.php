@@ -7,12 +7,10 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
 
 /**
- * Class SkiCardTransformer
- * @package Eliberty\RedpillBundle\Form\DataTransformer
+ * Class SkiCardTransformer.
  */
 class SkiCardTransformer implements DataTransformerInterface
 {
-
     private $fields;
 
     /**
@@ -25,7 +23,7 @@ class SkiCardTransformer implements DataTransformerInterface
     public function __construct(array $fields = null)
     {
         if (null === $fields) {
-            $fields = ['chip', 'base', 'luhn','crc','wtp','acceptance'];
+            $fields = ['chip', 'base', 'luhn', 'crc', 'wtp', 'acceptance'];
         }
 
         $this->fields = $fields;
@@ -44,18 +42,18 @@ class SkiCardTransformer implements DataTransformerInterface
             return null;
         }
 
-        if (!is_string($value)) {
+        if (!\is_string($value)) {
             throw new UnexpectedTypeException($value, 'string');
         }
 
-        $result = [];
-        $tmpFields = explode('-',$value);
+        $result    = [];
+        $tmpFields = explode('-', $value);
         foreach ($this->fields as $fld) {
-            if (count($tmpFields)) {
+            if (\count($tmpFields)) {
                 $result[$fld] = array_shift($tmpFields);
             }
         }
-        if (!empty($result['chip']) && (string) $result['chip'] ==='1') {
+        if (!empty($result['chip']) && '1' === (string) $result['chip']) {
             $result['chip'] = '01';
         }
 
@@ -63,7 +61,7 @@ class SkiCardTransformer implements DataTransformerInterface
     }
 
     /**
-     * reverse normalization
+     * reverse normalization.
      *
      * @param null $value
      *
@@ -75,7 +73,7 @@ class SkiCardTransformer implements DataTransformerInterface
             return '';
         }
 
-        if (!is_array($value)) {
+        if (!\is_array($value)) {
             throw new UnexpectedTypeException($value, 'array');
         }
 
@@ -83,7 +81,7 @@ class SkiCardTransformer implements DataTransformerInterface
             return null;
         }
 
-        $emptyFields = array();
+        $emptyFields = [];
 
         foreach ($this->fields as $field) {
             if (!isset($value[$field])) {
@@ -91,38 +89,36 @@ class SkiCardTransformer implements DataTransformerInterface
             }
         }
 
-        if (count($emptyFields) > 0) {
-            throw new TransformationFailedException(
-                sprintf('The fields "%s" should not be empty', implode('", "', $emptyFields)
-            ));
+        if (\count($emptyFields) > 0) {
+            throw new TransformationFailedException(sprintf('The fields "%s" should not be empty', implode('", "', $emptyFields)));
         }
 
-        if (isset($value['chip']) && !ctype_digit($value['chip']) && !is_int($value['chip'])) {
+        if (isset($value['chip']) && !ctype_digit($value['chip']) && !\is_int($value['chip'])) {
             throw new TransformationFailedException('This chip number is invalid');
-        } elseif (!empty($value['chip']) && (string) $value['chip'] ==='1') {
+        } elseif (!empty($value['chip']) && '1' === (string) $value['chip']) {
             $value['chip'] = '01';
         }
 
-        if (isset($value['base']) && !ctype_digit($value['base']) && !is_int($value['base'])) {
+        if (isset($value['base']) && !ctype_digit($value['base']) && !\is_int($value['base'])) {
             throw new TransformationFailedException('This base number is invalid');
         }
 
-        if (isset($value['luhn']) && !ctype_digit($value['luhn']) && !is_int($value['luhn'])) {
+        if (isset($value['luhn']) && !ctype_digit($value['luhn']) && !\is_int($value['luhn'])) {
             throw new TransformationFailedException('This luhn number is invalid');
         }
 
-        if (isset($value['wtp']) && !ctype_alnum($value['wtp']) && !is_string($value['wtp'])) {
+        if (isset($value['wtp']) && !ctype_alnum($value['wtp']) && !\is_string($value['wtp'])) {
             throw new TransformationFailedException('This wtp number is invalid');
         }
 
-        if (isset($value['crc']) && !ctype_alnum($value['crc']) && !is_string($value['crc'])) {
+        if (isset($value['crc']) && !ctype_alnum($value['crc']) && !\is_string($value['crc'])) {
             throw new TransformationFailedException('This crc number is invalid');
         }
 
-        if (isset($value['acceptance']) && !ctype_alnum($value['acceptance']) && !is_string($value['acceptance'])) {
+        if (isset($value['acceptance']) && !ctype_alnum($value['acceptance']) && !\is_string($value['acceptance'])) {
             throw new TransformationFailedException('This acceptance number is invalid');
         }
 
-        return strtoupper(implode('-',$value));
+        return strtoupper(implode('-', $value));
     }
 }

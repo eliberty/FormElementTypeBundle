@@ -7,8 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class DecimalType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class DecimalType.
  */
 class DecimalType extends AbstractType
 {
@@ -17,13 +16,13 @@ class DecimalType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'widget' => 'single_text'
-        ));
+        $resolver->setDefaults([
+            'widget' => 'single_text',
+        ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

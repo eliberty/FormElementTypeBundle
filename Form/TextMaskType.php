@@ -3,16 +3,11 @@
 namespace Eliberty\Bundle\FormElementTypeBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
-
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class KeycardSkidataType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class KeycardSkidataType.
  */
 class TextMaskType extends AbstractType
 {
@@ -21,13 +16,13 @@ class TextMaskType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'mask' => 'single_text'
-        ));
+        $resolver->setDefaults([
+            'mask' => 'single_text',
+        ]);
     }
 
     /**
-     * @return null|string|\Symfony\Component\Form\FormTypeInterface
+     * @return string|\Symfony\Component\Form\FormTypeInterface|null
      */
     public function getParent()
     {

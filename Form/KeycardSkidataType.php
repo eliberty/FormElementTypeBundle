@@ -2,40 +2,38 @@
 
 namespace Eliberty\Bundle\FormElementTypeBundle\Form;
 
+use Eliberty\Bundle\FormElementTypeBundle\Form\DataTransformer\SkiCardTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Eliberty\Bundle\FormElementTypeBundle\Form\DataTransformer\SkiCardTransformer;
 
 /**
- * Class KeycardSkidataType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class KeycardSkidataType.
  */
 class KeycardSkidataType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $chipOptions = $baseOptions = $luhnOptions = [
-            'required'        => $options['required'],
-            'label'           => ' - '
+            'required' => $options['required'],
+            'label'    => ' - ',
         ];
         $chipOptions['label_render'] = false;
-        $chipOptions['attr'] = ['maxlength' => 2];
-        $baseOptions['attr'] = ['maxlength' => 20];
-        $luhnOptions['attr'] = ['maxlength' => 1];
+        $chipOptions['attr']         = ['maxlength' => 2];
+        $baseOptions['attr']         = ['maxlength' => 20];
+        $luhnOptions['attr']         = ['maxlength' => 1];
 
         $builder
             ->add('chip', TextType::class, $chipOptions)
             ->add('base', TextType::class, $baseOptions)
             ->add('luhn', TextType::class, $luhnOptions)
             ->addViewTransformer($this->getTransformer());
-
     }
 
     /**
@@ -51,7 +49,6 @@ class KeycardSkidataType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-
         $compound = function (Options $options) {
             return true;
         };
@@ -61,7 +58,7 @@ class KeycardSkidataType extends AbstractType
         };
 
         $emptyValueNormalizer = function (Options $options, $emptyValue) use ($emptyValueDefault) {
-            if (is_array($emptyValue)) {
+            if (\is_array($emptyValue)) {
                 $default = $emptyValueDefault($options);
 
                 return array_merge(
@@ -73,7 +70,7 @@ class KeycardSkidataType extends AbstractType
             return [
                 'chip' => $emptyValue,
                 'base' => $emptyValue,
-                'luhn' => $emptyValue
+                'luhn' => $emptyValue,
             ];
         };
 
@@ -83,7 +80,7 @@ class KeycardSkidataType extends AbstractType
                 'required'       => false,
                 'empty_value'    => $emptyValue,
                 'error_bubbling' => true,
-                'data_class'     => null
+                'data_class'     => null,
             ]
         );
 

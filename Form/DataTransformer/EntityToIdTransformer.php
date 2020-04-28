@@ -2,13 +2,12 @@
 
 namespace Eliberty\Bundle\FormElementTypeBundle\Form\DataTransformer;
 
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
-use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Class EntityToIdTransformer
- * @package Eliberty\Bundle\FormElementTypeBundle\Form\DataTransformer
+ * Class EntityToIdTransformer.
  */
 class EntityToIdTransformer implements DataTransformerInterface
 {
@@ -29,16 +28,17 @@ class EntityToIdTransformer implements DataTransformerInterface
     public function __construct(ObjectManager $objectManager, $class)
     {
         $this->objectManager = $objectManager;
-        $this->class = $class;
+        $this->class         = $class;
     }
 
     /**
      * @param mixed $entity
+     *
      * @return mixed
      */
     public function transform($entity)
     {
-        if (null === $entity || !is_object($entity) || !method_exists($entity, 'getId')) {
+        if (null === $entity || !\is_object($entity) || !method_exists($entity, 'getId')) {
             return;
         }
 
@@ -47,7 +47,9 @@ class EntityToIdTransformer implements DataTransformerInterface
 
     /**
      * @param mixed $id
-     * @return mixed|null|object
+     *
+     * @return mixed|object|null
+     *
      * @throws TransformationFailedException
      */
     public function reverseTransform($id)

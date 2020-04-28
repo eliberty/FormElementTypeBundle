@@ -3,37 +3,36 @@
  * Created by PhpStorm.
  * User: mbaechtel
  * Date: 18/11/14
- * Time: 14:20
+ * Time: 14:20.
  */
 
 namespace Eliberty\Bundle\FormElementTypeBundle\Form;
 
+use Eliberty\Bundle\FormElementTypeBundle\Form\DataTransformer\SkiCardTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Eliberty\Bundle\FormElementTypeBundle\Form\DataTransformer\SkiCardTransformer;
 
 /**
- * Class KeycardOpenType
- * @package Eliberty\Bundle\FormElementTypeBundle\Form
+ * Class KeycardOpenType.
  */
-class KeycardOpenType extends AbstractType {
-
+class KeycardOpenType extends AbstractType
+{
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $baseOptions = $luhnOptions = [
-            'required'        => $options['required'],
-            'label'           => ' - '
+            'required' => $options['required'],
+            'label'    => ' - ',
         ];
         $baseOptions['label_render'] = false;
-        $baseOptions['attr'] = ['maxlength' => 10];
-        $luhnOptions['attr'] = ['maxlength' => 1];
+        $baseOptions['attr']         = ['maxlength' => 10];
+        $luhnOptions['attr']         = ['maxlength' => 1];
 
         $builder
             ->add('base', TextType::class, $baseOptions)
@@ -63,7 +62,7 @@ class KeycardOpenType extends AbstractType {
         };
 
         $emptyValueNormalizer = function (Options $options, $emptyValue) use ($emptyValueDefault) {
-            if (is_array($emptyValue)) {
+            if (\is_array($emptyValue)) {
                 $default = $emptyValueDefault($options);
 
                 return array_merge(
@@ -74,7 +73,7 @@ class KeycardOpenType extends AbstractType {
 
             return [
                 'base' => $emptyValue,
-                'luhn' => $emptyValue
+                'luhn' => $emptyValue,
             ];
         };
 
@@ -84,7 +83,7 @@ class KeycardOpenType extends AbstractType {
                 'required'       => false,
                 'empty_value'    => $emptyValue,
                 'error_bubbling' => true,
-                'data_class'     => null
+                'data_class'     => null,
             ]
         );
 
