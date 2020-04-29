@@ -6,6 +6,10 @@
 {% endspaceless %}
 {% endblock form_stylesheet %}
 
+{% block field_stylesheet "" %}
+
+{% block button_stylesheet "" %}
+
 {% block eliberty_checkboxswitch_stylesheet %}
     {% spaceless %}
         {% include 'ElibertyFormElementTypeBundle:Form/Css/' ~ formelementtypemode ~':bootstrap-switch.html.twig' %}
