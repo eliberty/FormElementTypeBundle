@@ -311,9 +311,9 @@
 
                 <img id="final-pic-{{ form.vars.id }}"  alt="{% trans %}rp.generic.upload.photo{% endtrans %}, {% trans %}rp.generic.upload.maxsize{% endtrans %}" class="uploadThumbImg"
                         {% if form.vars.value ends with 'pdf' %}
-                     src="/bundles/redpill/images/pdf.png"><a href="{{ getUploadedImagePath(form.vars.value, getEntityName(form.parent.vars.data))}}"><span>{{ 'rp.generic.upload.pdf' | trans }}</span></a></img>
+                     src="/bundles/redpill/images/pdf.png"><a href="{{ path('rp_document_show', {'id': form.parent.vars.data.id}) }}"><span>{{ 'rp.generic.upload.pdf' | trans }}</span></a></img>
                 {% else  %}
-                    src="{% if form.vars.value is not empty and form.vars.value is not null and getUploadedImagePath(form.vars.value, getEntityName(form.parent.vars.data)) != '' %}{{ getUploadedImagePath(form.vars.value, getEntityName(form.parent.vars.data))}}{% elseif uploadHasImage(form.vars.value) != '' %}{{uploadHasImage(form.vars.value)}}{% else %}{{'/bundles/redpill/images/noimage.png'}}{% endif %}">
+                    src="{% if form.vars.value is not empty and form.vars.value is not null %}{{ path('rp_document_show', {'id': form.parent.vars.data.id}) }}{% elseif uploadHasImage(form.vars.value) != '' %}{{uploadHasImage(form.vars.value)}}{% else %}{{'/bundles/redpill/images/noimage.png'}}{% endif %}">
                 {% endif %}
             </div>
             <div class="{% if form.vars.attr.inline is defined and form.vars.attr.inline == 'true' %}col-xs-8{% else %}row{% endif %}">
