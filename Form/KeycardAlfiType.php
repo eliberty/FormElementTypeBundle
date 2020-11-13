@@ -24,9 +24,9 @@ class KeycardAlfiType extends AbstractType
             'label'    => ' - ',
         ];
         $part1Options['label_render'] = false;
-        $part1Options['attr']         = ['maxlength' => 5];
-        $part2Options['attr']         = ['maxlength' => 5];
-        $part3Options['attr']         = ['maxlength' => 4];
+        $part1Options['attr']         = ['maxlength' => 5, 'class' => 'keycard-part-part1'];
+        $part2Options['attr']         = ['maxlength' => 5, 'class' => 'keycard-part-part2'];
+        $part3Options['attr']         = ['maxlength' => 4, 'class' => 'keycard-part-part3'];
 
         $builder
             ->add('part1', 'text', $part1Options)
