@@ -25,9 +25,9 @@ class KeycardTeamaxessType extends AbstractType
             'label_render' => false, ];
 
         $wtpOptions['label_render'] = false;
-        $wtpOptions['attr']         = ['maxlength' => 8];
-        $crcOptions['attr']         = ['maxlength' => 3];
-        $acceptOptions['attr']      = ['maxlength' => 3];
+        $wtpOptions['attr']         = ['maxlength' => 8, 'class' => 'keycard-part-wtp'];
+        $crcOptions['attr']         = ['maxlength' => 3, 'class' => 'keycard-part-crc'];
+        $acceptOptions['attr']      = ['maxlength' => 3, 'class' => 'keycard-part-acceptance'];
 
         $builder
             ->add('wtp', TextType::class, $wtpOptions)

@@ -31,8 +31,8 @@ class KeycardOpenType extends AbstractType
             'label'    => ' - ',
         ];
         $baseOptions['label_render'] = false;
-        $baseOptions['attr']         = ['maxlength' => 10];
-        $luhnOptions['attr']         = ['maxlength' => 1];
+        $baseOptions['attr']         = ['maxlength' => 10, 'class' => 'keycard-part-base'];
+        $luhnOptions['attr']         = ['maxlength' => 1, 'class' => 'keycard-part-luhn'];
 
         $builder
             ->add('base', TextType::class, $baseOptions)

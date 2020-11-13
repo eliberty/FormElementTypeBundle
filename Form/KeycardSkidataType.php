@@ -25,9 +25,9 @@ class KeycardSkidataType extends AbstractType
             'label'    => ' - ',
         ];
         $chipOptions['label_render'] = false;
-        $chipOptions['attr']         = ['maxlength' => 2];
-        $baseOptions['attr']         = ['maxlength' => 20];
-        $luhnOptions['attr']         = ['maxlength' => 1];
+        $chipOptions['attr']         = ['maxlength' => 2, 'class' => 'keycard-part-chip'];
+        $baseOptions['attr']         = ['maxlength' => 20, 'class' => 'keycard-part-base'];
+        $luhnOptions['attr']         = ['maxlength' => 1, 'class' => 'keycard-part-luhn'];
 
         $builder
             ->add('chip', TextType::class, $chipOptions)
