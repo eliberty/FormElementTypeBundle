@@ -580,7 +580,7 @@
 
                 // Check number on load
                 setTimeout(function () {
-                    checkCardNumber(input);
+                    checkCardNumber(input, iti);
                 }, 4000);
 
                 // On change, check that number is valid or not
@@ -628,15 +628,15 @@
              * Check the validity of phone number
              * @param input
              */
-            function checkCardNumber(input) {
+            function checkCardNumber(input, iti) {
                 // Remove old icons
                 var icon = input.parent().parent().find('span.phone-checker');
                 icon.removeClass('fa-check fa-exclamation-triangle');
 
                 // If we have a number defined
-                if (input.intlTelInput("getNumber")) {
+                if (iti.getNumber()) {
                     // If number is valid
-                    if (input.intlTelInput("isValidNumber")) {
+                    if (iti.isValidNumber()) {
                         icon.addClass('fa-check').css('color', 'green');
                     } else {
                         icon.addClass('fa-exclamation-triangle').css('color', 'red');
