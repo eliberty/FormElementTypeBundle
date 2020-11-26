@@ -563,10 +563,6 @@
                 var isAutoPlaceHolder = {% if attr.autoPlaceHolder is defined %}Boolean({{ attr.autoPlaceHolder }}){% else %}true{% endif %};
 
                 var iti = window.intlTelInput(input, {
-                    allowExtensions: false,
-                    autoFormat: true,
-                    autoPlaceholder: isAutoPlaceHolder,
-                    numberType: customNumberType,
                     initialCountry: defaultCountry,
                     preferredCountries: [defaultCountry],
                     utilsScript: '{{ utilsScript }}'
