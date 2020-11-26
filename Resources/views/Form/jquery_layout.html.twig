@@ -562,7 +562,7 @@
                 var displayAsterisk = {% if render_required_asterisk is defined and render_required_asterisk %}true{% else %}false{% endif %};
                 var isAutoPlaceHolder = {% if attr.autoPlaceHolder is defined %}Boolean({{ attr.autoPlaceHolder }}){% else %}true{% endif %};
 
-                input.intlTelInput({
+                var iti = window.intlTelInput(input, {
                     allowExtensions: false,
                     autoFormat: true,
                     autoPlaceholder: isAutoPlaceHolder,
@@ -594,7 +594,7 @@
 
                 // On submit, change number to international format
                 input.closest("form").submit(function () {
-                    $('#{{ id }}[type=hidden]').val(input.intlTelInput("getNumber"));
+                    $('#{{ id }}[type=hidden]').val(iti.getNumber());
                 });
             });
 
