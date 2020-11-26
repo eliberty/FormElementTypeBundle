@@ -1,5 +1,5 @@
 {
-    "name": "eliberty/formelementtype-bundle",
+    "name": "rseliberty/formelementtype-bundle",
     "type": "symfony-bundle",
     "description": "Extra form types for redpill",
     "keywords": ["form", "extra form", "eliberty"],
