@@ -565,7 +565,8 @@
                 var iti = window.intlTelInput(input.get(0), {
                     initialCountry: defaultCountry,
                     preferredCountries: [defaultCountry],
-                    utilsScript: '{{ utilsScript }}'
+                    utilsScript: '{{ utilsScript }}',
+                    separateDialCode: true,
                 });
 
                 // Add class which is removed after JS executing
@@ -635,6 +636,8 @@
 
                 // If we have a number defined
                 if (iti.getNumber()) {
+                    console.log('check card number', iti.getNumber(), iti.isValidNumber());
+
                     // If number is valid
                     if (iti.isValidNumber()) {
                         icon.addClass('fa-check').css('color', 'green');
