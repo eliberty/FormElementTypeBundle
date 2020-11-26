@@ -552,7 +552,7 @@
 {% block eliberty_phonenumber_javascript %}
     {% spaceless %}
         {% include 'ElibertyFormElementTypeBundle:Form/Js/' ~ formelementtypemode ~':phonenumber.html.twig' %}
-        {% set utilsScript = asset('bundles/' ~ formelementtypemode|lower ~ '/components/intl-tel-input/lib/libphonenumber/build/utils.js') %}
+        {% set utilsScript = asset('bundles/' ~ formelementtypemode|lower ~ '/components/intl-tel-input/build/js/utils.js') %}
         <script type="text/javascript">
             $(function () {
                 var input = $('#{{ id }}');
