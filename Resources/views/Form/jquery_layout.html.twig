@@ -561,11 +561,13 @@
                 var icon = {% if attr.icon is defined and attr.icon %}'{{ attr.icon }}'{% else %}null{% endif %};
                 var displayAsterisk = {% if render_required_asterisk is defined and render_required_asterisk %}true{% else %}false{% endif %};
                 var isAutoPlaceHolder = {% if attr.autoPlaceHolder is defined %}Boolean({{ attr.autoPlaceHolder }}){% else %}true{% endif %};
+                var separateDialCode = {% if attr.separateDialCode is defined %}Boolean({{ attr.separateDialCode }}){% else %}false{% endif %};
 
                 var iti = window.intlTelInput(input.get(0), {
                     initialCountry: defaultCountry,
                     preferredCountries: [defaultCountry],
                     utilsScript: '{{ utilsScript }}',
+                    separateDialCode: '{{ separateDialCode }}',
                 });
 
                 // Add class which is removed after JS executing
