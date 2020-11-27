@@ -552,7 +552,7 @@
 {% block eliberty_phonenumber_javascript %}
     {% spaceless %}
         {% include 'ElibertyFormElementTypeBundle:Form/Js/' ~ formelementtypemode ~':phonenumber.html.twig' %}
-        {% set utilsScript = asset('bundles/' ~ formelementtypemode|lower ~ '/components/home24-intl-tel-input/lib/libphonenumber/build/utils.js') %}
+        {% set utilsScript = asset('bundles/' ~ formelementtypemode|lower ~ '/components/intl-tel-input/build/js/utils.js') %}
         <script type="text/javascript">
             $(function () {
                 var input = $('#{{ id }}');
@@ -561,15 +561,13 @@
                 var icon = {% if attr.icon is defined and attr.icon %}'{{ attr.icon }}'{% else %}null{% endif %};
                 var displayAsterisk = {% if render_required_asterisk is defined and render_required_asterisk %}true{% else %}false{% endif %};
                 var isAutoPlaceHolder = {% if attr.autoPlaceHolder is defined %}Boolean({{ attr.autoPlaceHolder }}){% else %}true{% endif %};
+                var separateDialCodeValue = {% if attr.separateDialCode is defined %}Boolean({{ attr.separateDialCode }}){% else %}false{% endif %};
 
-                input.intlTelInput({
-                    allowExtensions: false,
-                    autoFormat: true,
-                    autoPlaceholder: isAutoPlaceHolder,
-                    numberType: customNumberType,
+                var iti = window.intlTelInput(input.get(0), {
                     initialCountry: defaultCountry,
                     preferredCountries: [defaultCountry],
-                    utilsScript: '{{ utilsScript }}'
+                    utilsScript: '{{ utilsScript }}',
+                    separateDialCode: separateDialCodeValue,
                 });
 
                 // Add class which is removed after JS executing
@@ -584,17 +582,17 @@
 
                 // Check number on load
                 setTimeout(function () {
-                    checkCardNumber(input);
+                    checkCardNumber(input, iti);
                 }, 4000);
 
                 // On change, check that number is valid or not
                 input.bind("change paste keyup", function () {
-                    checkCardNumber(input);
+                    checkCardNumber(input, iti);
                 });
 
                 // On submit, change number to international format
                 input.closest("form").submit(function () {
-                    $('#{{ id }}[type=hidden]').val(input.intlTelInput("getNumber"));
+                    $('#{{ id }}[type=hidden]').val(iti.getNumber());
                 });
             });
 
@@ -632,15 +630,15 @@
              * Check the validity of phone number
              * @param input
              */
-            function checkCardNumber(input) {
+            function checkCardNumber(input, iti) {
                 // Remove old icons
                 var icon = input.parent().parent().find('span.phone-checker');
                 icon.removeClass('fa-check fa-exclamation-triangle');
 
                 // If we have a number defined
-                if (input.intlTelInput("getNumber")) {
+                if (iti.getNumber()) {
                     // If number is valid
-                    if (input.intlTelInput("isValidNumber")) {
+                    if (iti.isValidNumber()) {
                         icon.addClass('fa-check').css('color', 'green');
                     } else {
                         icon.addClass('fa-exclamation-triangle').css('color', 'red');
