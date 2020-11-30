@@ -568,6 +568,7 @@
                     preferredCountries: [defaultCountry],
                     utilsScript: '{{ utilsScript }}',
                     separateDialCode: separateDialCodeValue,
+                    formatOnDisplay: true
                 });
 
                 // Add class which is removed after JS executing
@@ -578,7 +579,7 @@
                     initIcon(input, icon);
                 }
 
-                initAsterisk(input, displayAsterisk);
+                initAsterisk(input, false);
 
                 // Check number on load
                 setTimeout(function () {
@@ -637,6 +638,11 @@
 
                 // If we have a number defined
                 if (iti.getNumber()) {
+                    var currentText = iti.getNumber(intlTelInputUtils.numberFormat.E164);
+                    if (typeof currentText === 'string') { // sometimes the currentText is an object :)
+                        iti.setNumber(currentText); // will autoformat because of formatOnDisplay=true
+                    }
+                    
                     // If number is valid
                     if (iti.isValidNumber()) {
                         icon.addClass('fa-check').css('color', 'green');
