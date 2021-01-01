@@ -18,10 +18,10 @@
 {% if form.vars.attr.disableJsFile is not defined %}
     {% javascripts
     '@MopaBootstrapBundle/Resources/public/bootstrap/js/modal.js'
-    '@RedpillBundle/Resources/public/components/jquery-bgiframe/jquery.bgiframe.js'
+    '../node_modules/jquery-bgiframe/jquery.bgiframe.js'
     '@RedpillBundle/Resources/public/js/jquery.fineuploader-3.0.min.js'
-    '@RedpillBundle/Resources/public/components/jcrop/js/jquery.Jcrop.min.js'
-    '@RedpillBundle/Resources/public/components/jquery.gritter/js/jquery.gritter.min.js'
+    '../node_modules/Jcrop/js/jquery.Jcrop.min.js'
+    '../node_modules/Gritter/js/jquery.gritter.min.js'
     '@RedpillBundle/Resources/public/js/libs/upload/uploadmanager.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
