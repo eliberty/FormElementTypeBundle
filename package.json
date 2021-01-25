@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "bootstrap-datepicker": "https://github.com/uxsolutions/bootstrap-datepicker#v1.0.1",
+    "bootstrap-markdown": "https://github.com/toopay/bootstrap-markdown#v2.1.1",
+    "bootstrap-multiselect": "https://github.com/davidstutz/bootstrap-multiselect#v0.9.4",
+    "bootstrap-select": "https://github.com/snapappointments/bootstrap-select#v1.6.5",
+    "bootstrap-switch": "3.3.2",
+    "bootstrap-toggle": "https://github.com/minhur/bootstrap-toggle#2.2.0",
+    "eonasdan-bootstrap-datetimepicker": "4.17.49",
+    "intl-tel-input": "17.0.8",
+    "jquery.inputmask": "3.1.57",
+    "json-editor": "0.7.13",
+    "pick-a-color": "https://github.com/lauren/pick-a-color#1.2.2"
+  }
+}
